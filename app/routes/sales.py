@@ -16,7 +16,7 @@ def create_sale():
     query["distributor"] = data["distributor"]
     query["product"] = data["product"]
     app.mongo.db.sales.insert_one(query)
-    return jsonify(data={"status": True})
+    return jsonify({"status": True})
 
 def autoIncrement(collection):
     app.mongo.db.counters.update_one({"collection": collection}, {"$inc" : {"value": 1}}, upsert=True)
@@ -27,7 +27,7 @@ def autoIncrement(collection):
 def get_sales():
     sales = app.mongo.db.sales.find(limit=100)
     sales = [doc for doc in sales]
-    return jsonify(data=sales)
+    return jsonify(sales)
 
 @app.route('/sales/<int:sale_id>')
 def get_sale(sale_id):

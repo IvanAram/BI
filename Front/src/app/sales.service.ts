@@ -11,6 +11,6 @@ export class SalesService {
   constructor(private http: HttpClient) { }
 
   getSales(): Observable<Sale[]>{
-    return this.http.get<Sale[]>('http://localhost:5000/sales')
+    return this.http.get<Sale[]>('/sales')
   }
 }
