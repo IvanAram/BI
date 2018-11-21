@@ -11,7 +11,7 @@ export class SalesComponent implements OnInit {
   sales: Sale[];
   productStats: Object[] = [];
 
-  view: any[] = [1750, 400];
+  view: any[] = [1500, 400];
 
   // options
   gradient = false;
@@ -45,7 +45,7 @@ export class SalesComponent implements OnInit {
         statsObj[sale.product].total_cash += sale.total_cash;
       } else {
         statsObj[sale.product] = {
-          total_cash: sale.total_cash;
+          total_cash: sale.total_cash
         }
       }
     }
