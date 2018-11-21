@@ -1,9 +1,9 @@
 export class Sale {
-  id: number;
+  _id: number;
   amount: number;
-  totalCash: number;
-  discountPercentage: number;
-  saleDate: Date;
+  total_cash: number;
+  discount_percentage: number;
+  sale_date: Date;
   distributor: string;
   product: string;
 }

@@ -4,7 +4,8 @@ import { SalesComponent } from './sales/sales.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/ventas', pathMatch: 'full' },
-  { path: 'ventas', component: SalesComponent }
+  { path: 'ventas', component: SalesComponent },
+  // { path: 'venta/:id', component: SaleDetailComponent }
 ];
 
 @NgModule({

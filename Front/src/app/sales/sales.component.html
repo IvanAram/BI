@@ -1,3 +1,26 @@
-<p>
-  sales works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="card">
+        <div class="card-header">
+          Total
+        </div>
+        <div class="card-body">
+          {{total | currency}}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="card-header">
+          Mejor venta
+        </div>
+        <div class="card-body">
+          <p class="card-text">Nombre del producto: {{highestSale.product}}</p>
+          <p class="card-text">Cantidad de licencias vendidas: {{highestSale.amount}}</p>
+          <p class="card-text">Ganancia total: {{highestSale.total_cash | currency}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

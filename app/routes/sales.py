@@ -25,7 +25,7 @@ def autoIncrement(collection):
 
 @app.route('/sales')
 def get_sales():
-    sales = app.mongo.db.sales.find(limit=100)
+    sales = app.mongo.db.sales.find(limit=100).sort('sale_date', -1)
     sales = [doc for doc in sales]
     return jsonify(sales)
 
