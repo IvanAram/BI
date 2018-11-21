@@ -6,4 +6,5 @@ export class Sale {
   sale_date: Date;
   distributor: string;
   product: string;
+  place: string;
 }

@@ -15,7 +15,13 @@ def create_sale():
     query["sale_date"] = datetime.datetime(data["Y"],data["M"],data["D"])
     query["distributor"] = data["distributor"]
     query["product"] = data["product"]
+    query["place"] = data["place"]
     app.mongo.db.sales.insert_one(query)
+    return jsonify({"status": True})
+
+@app.route('/sales/reset', methods=["POST"])
+def reset_db():
+    app.mongo.db.command("dropDatabase");
     return jsonify({"status": True})
 
 def autoIncrement(collection):
@@ -25,7 +31,7 @@ def autoIncrement(collection):
 
 @app.route('/sales')
 def get_sales():
-    sales = app.mongo.db.sales.find(limit=100).sort('sale_date', -1)
+    sales = app.mongo.db.sales.find(limit=300).sort('sale_date', -1)
     sales = [doc for doc in sales]
     return jsonify(sales)
 

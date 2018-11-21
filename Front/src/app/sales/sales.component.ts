@@ -9,10 +9,25 @@ import { Sale } from '../sale';
 })
 export class SalesComponent implements OnInit {
   sales: Sale[];
-  totalCash: number = 0;
-  highestSale: Sale;
-  productStats: Object = {};
-  objectkeys: Function = Object.keys;
+
+  view: any[] = [700, 400];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Number';
+  showYAxisLabel = true;
+  yAxisLabel = 'Color Value';
+  timeline = true;
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+  multi: Object[];
 
   constructor(private salesService: SalesService) { }
 
@@ -30,29 +45,31 @@ export class SalesComponent implements OnInit {
   }
 
   getStats(): void{
-    this.highestSale = this.sales[0];
-    for(let sale of this.sales){
-      this.totalCash += sale.total_cash;
-
-      if(sale.total_cash > this.highestSale.total_cash){
-        this.highestSale = sale;
-      }
-
-      if(sale.product in this.productStats){
-        this.productStats[sale.product].count += 1;
-        this.productStats[sale.product].total_cash += sale.total_cash;
-        this.productStats[sale.product].amount += sale.amount;
-      } else {
-        this.productStats[sale.product] = {
-          count: 1,
-          total_cash: sale.total_cash,
-          amount: sale.amount,
-        }
-      }
-    }
-    console.log(this.totalCash);
-    console.log(this.highestSale);
-    console.log(this.productStats);
+    this.multi = [{
+      name: 'Cyan',
+      series: [{
+        name: 5,
+        value: 2650
+      }, {
+        name: 10,
+        value: 2800
+      }, {
+        name: 15,
+        value: 2000
+      }]
+    }, {
+      name: 'Yellow',
+      series: [{
+        name: 5,
+        value: 2500
+      }, {
+        name: 10,
+        value: 3100
+      }, {
+        name: 15,
+        value: 2350
+      }]
+    }];
   }
 
 }
