@@ -1,0 +1,25 @@
+#!/bin/bash
+if [[ $# -lt 1 ]]; then
+  printf "Incorrect usage:\n\t$0 [Number of sales]\n"
+  exit
+fi
+#Check if $1 is number
+#Check if distributor.txt and products.txt exist
+counter=0
+readarray -t distributors < distributors.txt
+readarray -t products < products.txt
+readarray -t prices < prices.txt
+while [[ counter -lt $1 ]]; do
+  amount=$(( (RANDOM % 100) + 1 ))
+  discountPercentage=$(( (RANDOM % 26) ))
+  Y=2018
+  M=$(( (RANDOM % 12) + 1 ))
+  D=$(( (RANDOM % 28) + 1 ))
+  index=$(( (RANDOM % ${#distributors[*]}) ))
+  distributor=${distributors[$index]}
+  totalCash=$((${prices[$index]} * $amount))
+  index=$(( (RANDOM % ${#products[*]}) ))
+  product=${products[$index]}
+  curl -d "{\"amount\": $amount, \"total_cash\": $totalCash, \"discount_percentage\":$discountPercentage, \"Y\":$Y, \"M\":$M, \"D\":$D, \"distributor\":\"$distributor\", \"product\":\"$product\"}"  -H "Content-Type: application/json" -X POST http://localhost:5000/sales/create
+  counter=$((counter+1))
+done
