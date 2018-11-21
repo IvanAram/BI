@@ -9,9 +9,10 @@ import { Sale } from '../sale';
 })
 export class SalesComponent implements OnInit {
   sales: Sale[];
-  total: number = 0;
+  totalCash: number = 0;
   highestSale: Sale;
   productStats: Object = {};
+  objectkeys: Function = Object.keys;
 
   constructor(private salesService: SalesService) { }
 
@@ -19,7 +20,7 @@ export class SalesComponent implements OnInit {
     this.getSales();
   }
 
-  getSales(){
+  getSales(): void{
     this.salesService.getSales().subscribe(response => {
       this.sales = response;
       this.getStats();
@@ -28,10 +29,10 @@ export class SalesComponent implements OnInit {
     });
   }
 
-  getStats(){
+  getStats(): void{
     this.highestSale = this.sales[0];
     for(let sale of this.sales){
-      this.total += sale.total_cash;
+      this.totalCash += sale.total_cash;
 
       if(sale.total_cash > this.highestSale.total_cash){
         this.highestSale = sale;
@@ -49,7 +50,7 @@ export class SalesComponent implements OnInit {
         }
       }
     }
-    console.log(this.total);
+    console.log(this.totalCash);
     console.log(this.highestSale);
     console.log(this.productStats);
   }

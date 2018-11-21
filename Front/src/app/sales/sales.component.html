@@ -1,25 +1,39 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-2">
+<div class="container-fluid m-4">
+  <div class="row m-3">
+    <div class="col-3">
       <div class="card">
-        <div class="card-header">
+        <h5 class="card-header">
           Total
-        </div>
+        </h5>
         <div class="card-body">
-          {{total | currency}}
+          {{totalCash | currency}}
         </div>
       </div>
     </div>
-    <div class="col-lg-10">
+    <div class="col-9">
       <div class="card">
-        <div class="card-header">
+        <h5 class="card-header">
           Mejor venta
-        </div>
+        </h5>
         <div class="card-body">
           <p class="card-text">Nombre del producto: {{highestSale?.product}}</p>
           <p class="card-text">Cantidad de licencias vendidas: {{highestSale?.amount}}</p>
           <p class="card-text">Ganancia total: {{highestSale?.total_cash | currency}}</p>
           <p class="card-text">Distribuidor: {{highestSale?.distributor}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="col-4" *ngFor="let productkey of objectkeys(productStats)">
+      <div class="card m-2">
+        <h5 class="card-header">
+          {{productkey}}
+        </h5>
+        <div class="card-body">
+          <p class="card-text">Ventas del producto: {{productStats[productkey].count}}</p>
+          <p class="card-text">Ganancias: {{productStats[productkey].total_cash | currency}}</p>
+          <p class="card-text">Licencias vendidas: {{productStats[productkey].amount}}</p>
         </div>
       </div>
     </div>
