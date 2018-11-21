@@ -9,19 +9,13 @@ import { Sale } from '../sale';
 })
 export class SalesComponent implements OnInit {
   sales: Sale[];
+  productStats: Object[] = [];
 
-  view: any[] = [700, 400];
+  view: any[] = [1750, 400];
 
   // options
-  showXAxis = true;
-  showYAxis = true;
   gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Number';
-  showYAxisLabel = true;
-  yAxisLabel = 'Color Value';
-  timeline = true;
+
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -45,31 +39,24 @@ export class SalesComponent implements OnInit {
   }
 
   getStats(): void{
-    this.multi = [{
-      name: 'Cyan',
-      series: [{
-        name: 5,
-        value: 2650
-      }, {
-        name: 10,
-        value: 2800
-      }, {
-        name: 15,
-        value: 2000
-      }]
-    }, {
-      name: 'Yellow',
-      series: [{
-        name: 5,
-        value: 2500
-      }, {
-        name: 10,
-        value: 3100
-      }, {
-        name: 15,
-        value: 2350
-      }]
-    }];
+    let statsObj = {};
+    for(let sale of this.sales){
+      if(sale.product in statsObj){
+        statsObj[sale.product].total_cash += sale.total_cash;
+      } else {
+        statsObj[sale.product] = {
+          total_cash: sale.total_cash;
+        }
+      }
+    }
+    console.log(statsObj);
+    for(let key of Object.keys(statsObj)){
+      this.productStats.push({
+        name: key,
+        value: statsObj[key].total_cash
+      });
+    }
+    this.multi = this.productStats;
   }
 
 }
