@@ -1,12 +1,112 @@
-<div class="container-fluid m-4">
-  <div class="row">
+<div class="container someclass">
+  <div class="row m-4">
     <div class="col">
-      <ngx-charts-advanced-pie-chart
-            [view]="view"
-            [scheme]="colorScheme"
-            [results]="multi"
-            [gradient]="gradient">
-      </ngx-charts-advanced-pie-chart>
+      <div class="form-group">
+       <label for="graphSelect">Selecciona gráfico:</label>
+       <select class="form-control" id="graphSelect" [(ngModel)]="select">
+         <option value="0">Hisotriales</option>
+         <option value="1">Distribuidores</option>
+         <option value="2">Productos</option>
+       </select>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="select == 0">
+    <div class="row">
+      <div class="col">
+        <ngx-charts-line-chart
+          [view]="[1000, 300]"
+          [scheme]="colorScheme"
+          [results]="lineResults"
+          [xAxis]="true"
+          [yAxis]="true"
+          [xAxisLabel]="'Mes'"
+          [yAxisLabel]="'Ganancia en MDP'"
+          [showYAxisLabel]="true"
+          [showXAxisLabel]="true"
+          [legend]="'true'">
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <ngx-charts-line-chart
+          [view]="[1000, 300]"
+          [scheme]="colorScheme"
+          [results]="lineResults2"
+          [xAxis]="true"
+          [yAxis]="true"
+          [xAxisLabel]="'Mes'"
+          [yAxisLabel]="'Licencias vendidas'"
+          [showYAxisLabel]="true"
+          [showXAxisLabel]="true"
+          [legend]="'true'">
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="select == 1">
+    <div class="row">
+      <div class="col">
+        <ngx-charts-bar-vertical-2d
+          [view]="[1000,400]"
+          [results]="distResults"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Distribuidor'"
+          [yAxisLabel]="'Ganancia en MDP'"
+          [legendTitle]="'Producto'"
+          [barPadding]="5"
+          [showDataLabel]="true"
+          [groupPadding]="10">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ngx-charts-bar-vertical-2d
+          [view]="[1000,400]"
+          [results]="distResults2"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Distribuidor'"
+          [yAxisLabel]="'Licencias vendidas'"
+          [legendTitle]="'Producto'"
+          [barPadding]="5"
+          [showDataLabel]="true"
+          [groupPadding]="10">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="select == 2">
+    <div class="row">
+      <div class="col">
+        <ngx-charts-advanced-pie-chart
+          [view]="[1000, 400]"
+          [scheme]="colorScheme"
+          [results]="multi"
+          [label]="'Ganancias totales'"
+          [valueFormatting]="formatCurrency">
+        </ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ngx-charts-pie-grid
+          [view]="[1000, 400]"
+          [scheme]="colorScheme"
+          [results]="gridResults"
+          [label]="'Licencias vendidas'">
+        </ngx-charts-pie-grid>
+      </div>
     </div>
   </div>
 </div>
