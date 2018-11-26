@@ -9,7 +9,7 @@ import { Sale } from '../sale';
 })
 export class SalesComponent implements OnInit {
   sales: Sale[];
-  select: number = 1;
+  select: number = 0;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
