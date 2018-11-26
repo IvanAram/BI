@@ -9,12 +9,18 @@ import { SalesComponent } from './sales/sales.component';
 import { RecomendationsComponent } from './recomendations/recomendations.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HistoricComponent } from './historic/historic.component';
+import { DistributorsComponent } from './distributors/distributors.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SalesComponent,
-    RecomendationsComponent
+    RecomendationsComponent,
+    HistoricComponent,
+    DistributorsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

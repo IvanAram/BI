@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ngx-charts-bar-vertical-2d
+        [view]="[1000,400]"
+        [results]="distResults"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Distribuidor'"
+        [yAxisLabel]="'Ganancia en MDP'"
+        [legendTitle]="'Producto'"
+        [barPadding]="5"
+        [showDataLabel]="true"
+        [groupPadding]="10">
+      </ngx-charts-bar-vertical-2d>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ngx-charts-bar-vertical-2d
+        [view]="[1000,400]"
+        [results]="distResults2"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Distribuidor'"
+        [yAxisLabel]="'Licencias vendidas'"
+        [legendTitle]="'Producto'"
+        [barPadding]="5"
+        [showDataLabel]="true"
+        [groupPadding]="10">
+      </ngx-charts-bar-vertical-2d>
+    </div>
+  </div>
+</div>
